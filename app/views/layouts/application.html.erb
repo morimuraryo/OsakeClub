@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Osake_Club</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!--◆bootstrap導入のため、tylesheet_link_tag　→ tylesheet_pack_tagに書き換え-->
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!--FontAwesome読み込み-->
+    <script src="https://kit.fontawesome.com/dc75088d57.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav class = "navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class = "container">
+          <a class = "navbar-brand" href= "/"><span>Osake_Club</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class = "collapse navbar-collapse" id = "navbarNavDropdown">
+            <% if user_signed_in? %>
+              <ul class = "navbar-nav ml-auto">
+                <li class = "nav-item">
+                  <%= link_to  user_path(current_user.id), class: 'nav-link text-light'  do %>
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                  <% end %>
+                </li>
+                <li class = "nav-item">
+                  <%= link_to users_path, class: 'nav-link text-light' do %>
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                  <% end %>
+                </li>
+                <li class = "nav-item">
+                  <%= link_to  osakes_path, class: 'nav-link text-light' do %>
+                    <i class="fas fa-osake-open"></i>
+                    <span>Osakes</span>
+                  <% end %>
+                </li>
+                <li class = "nav-item">
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Log out</span>
+                  <% end %>
+                </li>
+              </ul>
+            <% else %>
+              <ul class = "navbar-nav ml-auto">
+                <li class = "nav-item">
+                  <%= link_to root_path, class: 'nav-link text-light' do %>
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                    <% end %>
+                </li>
+                <li class = "nav-item">
+                  <%= link_to  home_about_path, class: 'nav-link text-light' do %>
+                    <i class="fas fa-link"></i>
+                    <span>About</span>
+                    <% end %>
+                </li>
+                <li class = "nav-item">
+                  <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign up</span>
+                    <% end %>
+                </li>
+                <li class = "nav-item">
+                  <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Log in</span>
+                    <% end %>
+                </li>
+               </ul>
+              </nav>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+    <!--メッセージ-->
+    <%= notice %>
+    <%= alert %>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <div class = "container mt-5">
+        <div class = "row">
+          <div class = "mx-auto">
+           <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

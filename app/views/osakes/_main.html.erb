@@ -1,0 +1,27 @@
+<div class = "col-md-8 offset-md-1">
+            <h2>Osakes</h2>
+            <table class = "table table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Opinion</th>
+                        <th colspan = "3"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% osakes.each do |osake| %>
+                        <tr>
+                            <td>
+                                <%= link_to user_path(osake.user) do %>
+                                    <%= image_tag osake.user.get_profile_image(100,100) %>
+                                <% end %>
+                            </td>
+                            <td><%= link_to osake.title, osake_path(osake.id) %></td>
+                            <td><%= osake.body %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

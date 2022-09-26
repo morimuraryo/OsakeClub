@@ -1,0 +1,22 @@
+<!--Books#edit-->
+<div class = "container">
+  <div class = "row">
+    <!--smサイズ以上12 mdサイズ以上8 lgサイズ以上 左右のパディングを3rem sm以上で左右のパディング0　水平にセンタリング-->
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Editing Osake</h1>
+      <%= render 'error', model: @osake %>
+      <%= form_with model:@osake do |f| %>
+        <%= f.label :title, 'Title' %><br/>
+        <%= f.text_field :title, autofocus:true %><br/>
+        <%= f.label :body, 'Opinion' %><br/>
+        <%= f.text_area :body, autofocus:true %><br/>
+        <%= f.submit 'Update Osake', class: 'btn btn-success'  %><br/>
+
+      <% end %>
+
+      <%= link_to "Show", osake_path(@osake.id) %>
+      |
+      <%= link_to "Back", osakes_path %>
+    </div>
+  </div>
+</div>
